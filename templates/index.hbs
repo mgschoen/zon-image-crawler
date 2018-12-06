@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ZON Aufmacher</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
+        crossorigin="anonymous">
+    <style type="text/css">
+        article {
+            float: left;
+        }
+        img {
+            width: 400px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var articles, numArticles, currentPage, pageSize
+
+        function goTo (page) {
+            articles.hide()
+            var targetPage = page
+            if (targetPage < 0) 
+                targetPage = 0
+            var lastPage = Math.ceil(numArticles / pageSize) - 1
+            if (targetPage > lastPage) 
+                targetPage = lastPage
+            currentPage = targetPage
+            var firstVisibleArticle = targetPage * pageSize
+            var lastVisibleArticle = firstVisibleArticle + pageSize
+            if (lastVisibleArticle >= articles.length)
+                lastVisibleArticle = articles.length
+            for (var i = firstVisibleArticle; i < lastVisibleArticle; i++) {
+                $(articles[i]).show()
+            }
+            $('#pageLabel').text(currentPage)
+            $('#lastPageLabel').text(lastPage)
+        }
+
+        function next () {
+            goTo(currentPage+1)
+        }
+
+        function prev () {
+            goTo(currentPage-1)
+        }
+
+        $(function(e) {
+            articles = $('article')
+            numArticles = articles.length
+            currentPage = 0
+            pageSize = 20
+            goTo(0)
+            console.log(articles[0])
+
+            $('img').on('error', function() {
+                console.log('image error')
+                $(this).hide()
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>ZON Aufmacher</h1>
+        <div>
+            <button onclick="prev()">Prev</button> 
+            <span id="pageLabel"></span>/<span id="lastPageLabel"></span> 
+            <button onclick="next()">Next</button>
+        </div>
+        {{#each articles}}
+        <article class="card w-25 m-1">
+            <img class="card-img-top" src="{{imageUrl}}">
+            <div class="card-body">
+                <p>{{superTitle}}</p>
+                <a href="{{articleUrl}}" target="_blank"><h5>{{title}}</h5></a>
+            </div>
+        </article>
+        {{/each}}
+    </div>
+</body>
+</html>

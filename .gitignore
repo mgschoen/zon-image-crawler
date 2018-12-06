@@ -1,0 +1,9 @@
+.vscode
+.DS_Store
+backup
+dist
+example-responses
+log
+db
+node_modules
+yarn-error.log

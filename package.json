@@ -1,0 +1,16 @@
+{
+  "name": "sitekritik-crawler",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ."
+  },
+  "dependencies": {
+    "clarifai": "^2.9.0",
+    "handlebars": "^4.0.12",
+    "lokijs": "^1.5.5",
+    "request": "^2.88.0",
+    "sqlite3": "^4.0.4"
+  }
+}
