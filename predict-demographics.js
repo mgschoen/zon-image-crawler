@@ -21,8 +21,10 @@ function dbLoaded () {
     let imagesCollection = lokiDB.getCollection('image')
 
     let imagesWithArticle = imagesCollection.find({used_in_article: true})
+    let firstIndex = parseInt(process.argv[2]) || 0
+    console.log(firstIndex)
 
-    predictLoop(imagesWithArticle, 0, () => {
+    predictLoop(imagesWithArticle, firstIndex, () => {
         console.log()
         console.log('Done with this.')
     })
