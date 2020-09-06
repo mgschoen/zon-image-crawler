@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "clarifai": "^2.9.0",
-    "handlebars": "^4.0.12",
+    "handlebars": "^4.5.3",
     "image-downloader": "^3.4.2",
     "lokijs": "^1.5.5",
     "request": "^2.88.0",
